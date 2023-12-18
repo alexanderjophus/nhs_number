@@ -1,6 +1,12 @@
 package nhs_number
 
-func isValid(nhsNumber string) bool {
+// IsValid returns true if the NHS number is valid, false otherwise.
+//
+// The NHS number is a 10 digit number.
+// The first digit is multiplied by 10, the second by 9, the third by 8, etc.
+// The sum of these multiplications is then divided by 11.
+// If the remainder is 0, the NHS number is valid.
+func IsValid(nhsNumber string) bool {
 	if len(nhsNumber) != 10 {
 		return false
 	}

@@ -2,7 +2,7 @@ package nhs_number
 
 import "testing"
 
-func Test_isValid(t *testing.T) {
+func TestIsValid(t *testing.T) {
 	tests := []struct {
 		name      string
 		nhsNumber string
@@ -66,7 +66,7 @@ func Test_isValid(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name+"/"+tt.nhsNumber, func(t *testing.T) {
-			if got := isValid(tt.nhsNumber); got != tt.want {
+			if got := IsValid(tt.nhsNumber); got != tt.want {
 				t.Errorf("isValid() = %v, want %v", got, tt.want)
 			}
 		})
@@ -74,7 +74,7 @@ func Test_isValid(t *testing.T) {
 }
 
 // bonus tests
-func Fuzz_isValid(f *testing.F) {
+func FuzzIsValid(f *testing.F) {
 	f.Add("5990128088")
 	f.Add("1275988113")
 	f.Add("4536026665")
@@ -88,6 +88,6 @@ func Fuzz_isValid(f *testing.F) {
 	f.Add("ABCDE12345")
 	f.Fuzz(func(t *testing.T, nhsNumber string) {
 		// ignore return value, just checking for panics
-		_ = isValid(nhsNumber)
+		_ = IsValid(nhsNumber)
 	})
 }
